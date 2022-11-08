@@ -13,7 +13,7 @@ packages = {package}
 setup_requires =
     setuptools_scm
     setuptools >= 38.3.0
-python_requires = >=3.6
+python_requires = >=3.7
 
 [check]
 metadata = true
