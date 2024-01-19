@@ -12,7 +12,7 @@ THIS_DIR = Path(__file__).absolute().parent
 TEMPLATE_DIR = THIS_DIR / "templates"
 
 # This is very simplistic...
-VARIABLE_RE = re.compile(r"(?<!{){(\w+)}")
+VARIABLE_RE = re.compile(r"(?<!{){(@?[\w,]+)}")
 VARS_FILENAME = ".vars.ini"
 
 
@@ -22,10 +22,15 @@ def variable_format(tmpl: str, **kwargs: str) -> str:
 
     This means that '{ foo }' is not an interpolation, nor is '{{foo}}', but we
     also don't get '!r' suffix for free.  Maybe someday.
+
+    Non-interpolations can be written '{@foo}' which becomes '{foo}' when
+    rendered.
     """
 
     def replace(match: Match[str]) -> str:
         g = match.group(1)
+        if g[:1] == "@":
+            return match.group(0).replace("@", "", 1)
         if g in kwargs:
             return kwargs[g]
         return match.group(0)
@@ -49,7 +54,7 @@ def main() -> None:
             variables.extend(VARIABLE_RE.findall(str(template_path)))
 
             for v in variables:
-                if v not in parser["vars"]:
+                if v[:1] != '@' and v not in parser["vars"]:
                     parser["vars"][v] = input(f"Value for {v}? ").strip()
                     with open(VARS_FILENAME, "w") as f:
                         parser.write(f)
