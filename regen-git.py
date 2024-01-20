@@ -32,6 +32,12 @@ def find_git_dir(path: Optional[Path] = None) -> Path:
 
 
 def main():
+    skel_rev = subprocess.check_output(
+        ["git", "describe", "--always", "--dirty"],
+        cwd=os.path.dirname(__file__),
+        encoding="utf-8",
+    ).strip()
+
     git_branches = subprocess.check_output(
         ["git", "branch", "-a"], encoding="utf-8"
     ).splitlines(False)
@@ -72,7 +78,7 @@ def main():
             regen.main()
             subprocess.check_call(["git", "add", "-A"])
             try:
-                subprocess.check_call(["git", "commit", "-m", "Initialize skel"])
+                subprocess.check_call(["git", "commit", "-m", f"Initialize skel\n\nrev: {skel_rev}"])
             except subprocess.CalledProcessError as e:
                 print("\x1b[33mNo changes?\x1b[0m")
                 raise
@@ -95,7 +101,7 @@ def main():
 
             date = datetime.datetime.now().strftime("%Y-%m-%d")
             try:
-                subprocess.check_call(["git", "commit", "-m", f"Update skel {date}"])
+                subprocess.check_call(["git", "commit", "-m", f"Update skel {date}\n\nrev: {skel_rev}"])
             except subprocess.CalledProcessError as e:
                 print("\x1b[33mNo changes?\x1b[0m")
                 return
