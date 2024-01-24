@@ -9,7 +9,7 @@ author = {author}
 author_email = {author_email}
 
 [options]
-packages = {package}
+packages = find:
 setup_requires =
     setuptools_scm >= 8
     setuptools >= 65
