@@ -32,7 +32,7 @@ jobs:
           make setup
           pip install -U .[test]
       - name: Test
-        run: python -m unittest {package}.tests
+        run: python -m {package}.tests
 
   {package}:
     runs-on: ${{ matrix.os }}
