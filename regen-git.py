@@ -78,7 +78,9 @@ def main():
             regen.main()
             subprocess.check_call(["git", "add", "-A"])
             try:
-                subprocess.check_call(["git", "commit", "-m", f"Initialize skel\n\nrev: {skel_rev}"])
+                subprocess.check_call(
+                    ["git", "commit", "-m", f"Initialize skel\n\nrev: {skel_rev}"]
+                )
             except subprocess.CalledProcessError as e:
                 print("\x1b[33mNo changes?\x1b[0m")
                 raise
@@ -101,7 +103,9 @@ def main():
 
             date = datetime.datetime.now().strftime("%Y-%m-%d")
             try:
-                subprocess.check_call(["git", "commit", "-m", f"Update skel {date}\n\nrev: {skel_rev}"])
+                subprocess.check_call(
+                    ["git", "commit", "-m", f"Update skel {date}\n\nrev: {skel_rev}"]
+                )
             except subprocess.CalledProcessError as e:
                 print("\x1b[33mNo changes?\x1b[0m")
                 return

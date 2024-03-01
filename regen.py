@@ -45,8 +45,8 @@ def main() -> None:
     if "vars" not in parser:
         parser.add_section("vars")
 
-    for template_path in TEMPLATE_DIR.glob('**/*'):
-        if template_path.suffix == '.in':
+    for template_path in TEMPLATE_DIR.glob("**/*"):
+        if template_path.suffix == ".in":
             data = template_path.read_text()
 
             variables = []
@@ -54,14 +54,14 @@ def main() -> None:
             variables.extend(VARIABLE_RE.findall(str(template_path)))
 
             for v in variables:
-                if v[:1] != '@' and v not in parser["vars"]:
+                if v[:1] != "@" and v not in parser["vars"]:
                     parser["vars"][v] = input(f"Value for {v}? ").strip()
                     with open(VARS_FILENAME, "w") as f:
                         parser.write(f)
 
             interpolated_data = variable_format(data, **parser["vars"])
 
-            local_path = template_path.with_suffix('').relative_to(TEMPLATE_DIR)
+            local_path = template_path.with_suffix("").relative_to(TEMPLATE_DIR)
             local_path = Path(variable_format(str(local_path), **parser["vars"]))
 
             if local_path.exists():

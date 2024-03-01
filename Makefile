@@ -16,12 +16,14 @@ setup:
 
 .PHONY: format
 format:
-	python -m isort --recursive -y $(SOURCES)
-	python -m black $(SOURCES)
+	python -m ufmt format $(SOURCES)
 
 .PHONY: lint
 lint:
-	python -m isort --recursive --diff $(SOURCES)
-	python -m black --check $(SOURCES)
+	python -m ufmt check $(SOURCES)
 	python -m flake8 $(SOURCES)
 	mypy --strict regen.py
+
+.PHONY: checkdeps
+checkdeps:
+	python -m checkdeps . --allow-names regen
