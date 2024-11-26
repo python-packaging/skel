@@ -1,8 +1,5 @@
-ufmt==2.5.1
-black==24.2.0
-usort==1.0.8.post1
+ruff==0.8.0
 coverage==7.4.3
-flake8==7.0.0
 mypy==1.8.0
 tox==4.13.0
 twine==5.0.0

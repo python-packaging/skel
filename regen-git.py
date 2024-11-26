@@ -31,7 +31,7 @@ def find_git_dir(path: Optional[Path] = None) -> Path:
     raise Exception("No git dir found before root")
 
 
-def main():
+def main() -> None:
     skel_rev = subprocess.check_output(
         ["git", "describe", "--always", "--dirty"],
         cwd=os.path.dirname(__file__),
@@ -81,7 +81,7 @@ def main():
                 subprocess.check_call(
                     ["git", "commit", "-m", f"Initialize skel\n\nrev: {skel_rev}"]
                 )
-            except subprocess.CalledProcessError as e:
+            except subprocess.CalledProcessError:
                 print("\x1b[33mNo changes?\x1b[0m")
                 raise
             subprocess.check_call(["git", "push", "origin", SKEL_BRANCH])
@@ -106,7 +106,7 @@ def main():
                 subprocess.check_call(
                     ["git", "commit", "-m", f"Update skel {date}\n\nrev: {skel_rev}"]
                 )
-            except subprocess.CalledProcessError as e:
+            except subprocess.CalledProcessError:
                 print("\x1b[33mNo changes?\x1b[0m")
                 return
 
