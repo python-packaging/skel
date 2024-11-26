@@ -12,7 +12,8 @@ venv:
 
 .PHONY: setup
 setup:
-	python -m pip install -Ue .[dev,test]
+	python -m pip install uv
+	uv pip install -Ue .[dev,test]
 
 .PHONY: test
 test:
@@ -22,11 +23,13 @@ test:
 .PHONY: format
 format:
 	python -m ufmt format $(SOURCES)
+	ruff format
+	ruff check --fix
 
 .PHONY: lint
 lint:
 	python -m ufmt check $(SOURCES)
-	python -m flake8 $(SOURCES)
+	ruff check $(SOURCES)
 	python -m checkdeps --allow-names {package} {package}
 	mypy --strict --install-types --non-interactive {package}
 
