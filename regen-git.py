@@ -81,7 +81,7 @@ def main():
                 subprocess.check_call(
                     ["git", "commit", "-m", f"Initialize skel\n\nrev: {skel_rev}"]
                 )
-            except subprocess.CalledProcessError as e:
+            except subprocess.CalledProcessError:
                 print("\x1b[33mNo changes?\x1b[0m")
                 raise
             subprocess.check_call(["git", "push", "origin", SKEL_BRANCH])
@@ -106,7 +106,7 @@ def main():
                 subprocess.check_call(
                     ["git", "commit", "-m", f"Update skel {date}\n\nrev: {skel_rev}"]
                 )
-            except subprocess.CalledProcessError as e:
+            except subprocess.CalledProcessError:
                 print("\x1b[33mNo changes?\x1b[0m")
                 return
 
