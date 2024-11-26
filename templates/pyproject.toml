@@ -6,6 +6,9 @@ extend-select = [
   "I", # isort
 ]
 
+[tool.ruff.lint.isort]
+order-by-type = false
+
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = [
   "PLR2004", # Magic value used instead of constant (only in tests)
