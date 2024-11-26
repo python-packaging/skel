@@ -31,7 +31,7 @@ def find_git_dir(path: Optional[Path] = None) -> Path:
     raise Exception("No git dir found before root")
 
 
-def main():
+def main() -> None:
     skel_rev = subprocess.check_output(
         ["git", "describe", "--always", "--dirty"],
         cwd=os.path.dirname(__file__),
