@@ -1,5 +1,5 @@
 PYTHON?=python
-SOURCES=regen.py regen-git.py
+SOURCES=regen.py regen-git.py test_skel.py
 
 UV:=$(shell uv --version)
 ifdef UV
