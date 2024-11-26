@@ -1,6 +1,4 @@
-ufmt==2.5.1
 ruff==0.8.0
-usort==1.0.8.post1
 coverage==7.4.3
 mypy==1.8.0
 tox==4.13.0
