@@ -30,6 +30,7 @@ Homepage = "{url}"
 
 [project.optional-dependencies]
 dev = [
+  "build >= 1",
   "checkdeps == 0.9.0",
   "mypy == 1.19.1",
   "ruff == 0.15.6",
