@@ -7,8 +7,7 @@ setup:
 
 .PHONY: test
 test:
-	uv run coverage run -m pytest $(TESTOPTS)
-	uv run coverage report
+	uv run pytest $(TESTOPTS)
 
 .PHONY: format
 format:

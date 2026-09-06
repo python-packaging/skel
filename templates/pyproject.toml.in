@@ -38,6 +38,7 @@ dev = [
 test = [
   "coverage >= 6",
   "pytest >= 8",
+  "pytest-cov >= 5",
 ]
 
 [project.scripts]
@@ -52,6 +53,20 @@ include-package-data = true
 
 [tool.setuptools_scm]
 version_file = "{package}/_version.py"
+
+[tool.coverage.run]
+branch = true
+source = ["{package}", "tests"]
+
+[tool.coverage.report]
+fail_under = 70
+precision = 1
+show_missing = true
+skip_covered = true
+
+[tool.pytest.ini_options]
+addopts = "-ra --cov --cov-report=term-missing"
+testpaths = ["tests"]
 
 [tool.ruff]
 line-length = 88

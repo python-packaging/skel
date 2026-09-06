@@ -9,6 +9,10 @@ venv: setup
 setup:
 	uv sync --group dev
 
+.PHONY: test
+test:
+	uv run pytest $(TESTOPTS)
+
 .PHONY: format
 format:
 	uv run ruff format
