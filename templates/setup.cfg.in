@@ -1,7 +1,0 @@
-[check]
-metadata = true
-strict = true
-
-[mypy]
-ignore_missing_imports = True
-

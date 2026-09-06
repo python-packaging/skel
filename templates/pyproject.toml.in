@@ -68,6 +68,9 @@ skip_covered = true
 addopts = "-ra --cov --cov-report=term-missing"
 testpaths = ["tests"]
 
+[tool.mypy]
+ignore_missing_imports = true
+
 [tool.ruff]
 line-length = 88
 target-version = "py310"
