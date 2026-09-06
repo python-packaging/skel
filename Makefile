@@ -11,7 +11,9 @@ setup:
 
 .PHONY: test
 test:
-	uv run pytest $(TESTOPTS)
+	uv run coverage run -m pytest $(TESTOPTS)
+	uv run coverage combine
+	uv run coverage report
 
 .PHONY: format
 format:
