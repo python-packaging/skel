@@ -34,8 +34,6 @@ dev = [
   "checkdeps == 0.9.0",
   "mypy == 1.19.1",
   "ruff == 0.15.6",
-  "tox == 4.50.0",
-  "tox-uv == 1.33.4",
 ]
 test = [
   "coverage >= 6",
